@@ -1,0 +1,14 @@
+require 'aws-sdk'
+require 'ostruct'
+require 'rake'
+require 'yaml'
+require 'io/console'
+require "syncoku/runnable"
+require "syncoku/capture_backup"
+require "syncoku/control"
+require "syncoku/local"
+require "syncoku/local_db"
+require "syncoku/remote"
+require "syncoku/remote_db"
+require "syncoku/s3"
+require "syncoku/version"
