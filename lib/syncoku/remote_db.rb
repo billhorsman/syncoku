@@ -15,7 +15,7 @@ module Syncoku
       run_remotely "maintenance:on"
       puts "Restoring database"
       run_remotely "pg:reset DATABASE_URL --confirm #{app_name}"
-      run_remotely "pgbackups:restore DATABASE_URL '#{capture}' --confirm #{app_name}"
+      run_remotely "pg:backups restore '#{capture}' DATABASE_URL --confirm #{app_name}"
       run_remotely "run rake db:migrate"
       run_remotely "run rake syncoku:after_sync"
       run_remotely "restart"

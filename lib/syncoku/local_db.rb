@@ -90,8 +90,8 @@ module Syncoku
       if output =~ /a transfer is currently in progress/
         puts "It looks like a backup is already in progress (or possibly stuck):"
         puts output
-        `heroku pgbackups --app #{production_app}`
-        puts "Use pgbackups:destroy to remove the offending backup (or wait a bit to see if it fixes itself)"
+        `heroku pg:backups --app #{production_app}`
+        puts "Use pg:backups delete to remove the offending backup (or wait a bit to see if it fixes itself)"
         exit 1
       end
     end
