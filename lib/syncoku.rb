@@ -4,6 +4,7 @@ require 'rake'
 require 'yaml'
 require 'io/console'
 require "syncoku/runnable"
+require "syncoku/git"
 require "syncoku/capture_backup"
 require "syncoku/control"
 require "syncoku/local"

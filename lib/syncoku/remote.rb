@@ -3,6 +3,7 @@ module Syncoku
   # Responsible for syncing to a remote app
   class Remote
     include Runnable
+    include Git
 
     attr_reader :remote
 
@@ -28,7 +29,7 @@ module Syncoku
     end
 
     def app_name
-      @app_name ||= run_command("git remote -v | grep #{remote} | grep push").match(/heroku\.com:(.*)\.git/)[1]
+      @app_name ||= extract_app_name remote
     end
 
   end

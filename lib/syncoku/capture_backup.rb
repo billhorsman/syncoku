@@ -1,6 +1,7 @@
 module Syncoku
   module CaptureBackup
     include Runnable
+    include Git
 
     def capture
       puts "Capturing #{production_app_name} backup..."
@@ -14,7 +15,7 @@ module Syncoku
 
 
     def production_app_name
-      @production_app_name ||= run_command("git remote -v | grep production | grep push").match(/heroku[^:]*:(.*)\.git/)[1]
+      @production_app_name ||= extract_app_name 'production'
     end
 
   end
