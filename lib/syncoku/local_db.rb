@@ -29,8 +29,7 @@ module Syncoku
 
     def run_hook(name)
       if test_command "rake syncoku:#{name}"
-        puts "Running #{name} hook"
-        run_command "bundle exec rake syncoku:#{name}"
+        puts "#{name} hook run"
       else
         puts "Skipping #{name} hook. Define a Rake task called syncoku:#{name} to activate."
       end
