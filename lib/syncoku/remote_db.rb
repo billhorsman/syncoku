@@ -10,14 +10,18 @@ module Syncoku
       @app_name = app_name
     end
 
-    def sync
+    def sync(args)
       puts "Switch on maintenance mode"
       run_remotely "maintenance:on"
       puts "Restoring database"
       run_remotely "pg:reset DATABASE_URL --confirm #{app_name}"
       run_remotely "pg:backups:restore '#{capture}' DATABASE_URL --confirm #{app_name}"
       run_remotely "run rake db:migrate"
-      run_remotely "run rake syncoku:after_sync"
+      if args.include?("--skip-after-sync")
+        puts "Skipping syncoku:after_sync task"
+      else
+        run_remotely "run rake syncoku:after_sync"
+      end
       run_remotely "restart"
       puts "Switch off maintenance mode"
       run_remotely "maintenance:off"

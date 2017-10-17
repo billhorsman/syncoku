@@ -8,7 +8,7 @@ module Syncoku
       @to_env = to_env
     end
 
-    def sync
+    def sync(args)
       @missing = []
       @from_name = config_value "production.bucket"
       @to_name = config_value "#{to_env}.bucket"

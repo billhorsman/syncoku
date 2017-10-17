@@ -4,7 +4,7 @@ module Syncoku
     include Runnable
     include CaptureBackup
 
-    def sync
+    def sync(args)
       if File.exist?("#{dump_filename}")
         ask_to_download
       else
@@ -13,11 +13,15 @@ module Syncoku
       drop_and_create
       pg_restore
       migrate
-      run_hook 'after_sync'
+      if args.include?("--skip-after-sync")
+        puts "Skipping syncoku:after_sync task"
+      else
+        run_hook 'after_sync'
+      end
       `touch tmp/restart.txt`
     end
 
-    def rebuild
+    def rebuild(args)
       kill_connections
       puts "Rebuilding database"
       run_command "bundle exec rake db:drop db:create db:migrate"

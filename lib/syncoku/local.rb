@@ -11,15 +11,15 @@ module Syncoku
     end
 
     def db(args)
-      Syncoku::LocalDb.new.sync
+      Syncoku::LocalDb.new.sync(args)
     end
 
     def s3(args)
-      Syncoku::S3.new(:development).sync
+      Syncoku::S3.new(:development).sync(args)
     end
 
     def rebuild(args)
-      Syncoku::LocalDb.new.rebuild
+      Syncoku::LocalDb.new.rebuild(args)
     end
 
   end

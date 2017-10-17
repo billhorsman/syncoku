@@ -49,6 +49,12 @@ It will capture a backup of the database and download it to a local file called 
 
 If you define a rake task called `syncoku:after_sync` then it will automatically be run after the database has been restored and migrated. This is a good place to put anonymization tasks, for instance.
 
+If you want to skip this task, even though it exists:
+
+```
+syncoku --skip-after-sync
+```
+
 ## S3
 
 If you add a file called `syncoku.yml` with the following information, it can sync between S3 buckets too:

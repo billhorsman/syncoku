@@ -17,11 +17,11 @@ module Syncoku
     end
 
     def db(args)
-      Syncoku::RemoteDb.new(app_name).sync
+      Syncoku::RemoteDb.new(app_name).sync(args)
     end
 
     def s3(args)
-      Syncoku::S3.new(remote).sync
+      Syncoku::S3.new(remote).sync(args)
     end
 
     def rebuild(args)
